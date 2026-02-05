@@ -55,11 +55,13 @@ var services = scope.ServiceProvider;
 try
 {
     var context = services.GetRequiredService<QuestionDbContext>();
+    
     await context.Database.MigrateAsync();
 }
 catch (Exception e)
 {
     var logger = services.GetRequiredService<ILogger<Program>>();
+    
     logger.LogError(e, "An error occurred while migrating or seeding the database.");
 }
 
